@@ -68,6 +68,9 @@ namespace ImageProcessing
                 case Constants.COMMAND_FILE:
                     isValid = true;
                     break;
+                case Constants.COMMAND_DEST:
+                    isValid = true;
+                    break;
 		        default:
                     isValid = false;
                     break;

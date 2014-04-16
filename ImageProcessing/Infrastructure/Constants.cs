@@ -17,5 +17,6 @@ namespace ImageProcessing.Infrastructure
         public const string COMMAND_HEIGHT = "-height";
         public const string COMMAND_WIDTH = "-width";
         public const string COMMAND_FILE = "-file";
+        public const string COMMAND_DEST = "-destination";
     }
 }

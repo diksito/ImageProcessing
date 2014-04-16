@@ -6,6 +6,8 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using ImageProcessing.Infrastructure;
+using System.Drawing.Imaging;
+
 namespace ImageProcessing
 {
     class Image : File
@@ -13,7 +15,7 @@ namespace ImageProcessing
         // Properties
         public int Height { get; set; }
         public int Width { get; set; }
-        private Bitmap image { get; set; }
+        private System.Drawing.Image image { get; set; }
 
         private string[] extensions = new string[] { ".jpg", ".png", ".jpeg", ".gif" };
 
@@ -36,7 +38,7 @@ namespace ImageProcessing
                 else
                     Extension = ".jpg"; // set default to jpg
 
-                image = new Bitmap(CurrentDirectory);
+                image = System.Drawing.Image.FromFile(CurrentDirectory);
 
                 // Get image height and width
                 Height = image.Height;
@@ -86,11 +88,14 @@ namespace ImageProcessing
 
         public void Save()
         {
+            // Overrrite exsiting file
+            image.Save(Name, ImageFormat.Jpeg);
         }
 
 
         public void SaveAs(string name)
         {
+            image.Save(@"C:\\" + name + ".png");
         }
 
         public void Rotate(int degrees)
@@ -107,9 +112,20 @@ namespace ImageProcessing
         /// <param name="destination">destination path where the file will be saved</param>
         public void Crop(int x, int y, int width, int height, string destination)
         {
-            Rectangle cropArea = new Rectangle(x, y, width, height);
-            Bitmap bmpCrop = image.Clone(cropArea, image.PixelFormat);
-            bmpCrop.Save(destination);
+            //Rectangle cropArea = new Rectangle(x, y, width, height);
+            //Bitmap bmpCrop = image.Clone(cropArea, image.PixelFormat);
+            //try
+            //{
+            //    bmpCrop.Save(@destination);
+            //}
+            //catch(ArgumentException exc)
+            //{
+            //    Log.Error(exc.Message);
+            //}
+            //catch(Exception exc)
+            //{
+            //    Log.Error(exc.Message);
+            //}
         }
 
         private bool isValidImageExtension(string ext)

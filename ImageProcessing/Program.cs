@@ -29,22 +29,39 @@ namespace ImageProcessing
                 Image image = new Image(ArgumentsParser.Commands[Constants.COMMAND_FILE]);
 
 
-                foreach (var item in ArgumentsParser.Commands)
+                bool setDestinationPath = false;
+                string destinationPath = string.Empty;
+                if (ArgumentsParser.Commands.TryGetValue(Constants.COMMAND_DEST, out destinationPath))
+                    setDestinationPath = true;
+
+                // Resize image
+                string resizeArgs = string.Empty;
+                if (ArgumentsParser.Commands.TryGetValue(Constants.COMMAND_RESIZE, out resizeArgs))
                 {
-                    // Resize image
-                    if (item.Key == Constants.COMMAND_RESIZE && !string.IsNullOrEmpty(item.Value))
-                    {
-                        //List<int> parameterValues = ArgumentsParser.ParseIntValues(item.Value);
-                        //image.Resize(parameterValues[0], parameterValues[1]);
-                        Log.Info("Resizing...");
-                        Log.Info("Value: " + item.Value);
-                    }
-                    // Crop image
-                    if (item.Key == Constants.COMMAND_CROP)
-                    {
-                        Log.Info("Croping...");
-                        Log.Info("Value: " + item.Value);
-                    }
+                    //List<int> parameterValues = ArgumentsParser.ParseIntValues(item.Value);
+                    //image.Resize(parameterValues[0], parameterValues[1]);
+                    Log.Info("Resizing...");
+                    Log.Info("Value: " + resizeArgs);
+                }
+                // Crop image
+                string cropArgs = string.Empty;
+                if (ArgumentsParser.Commands.TryGetValue(Constants.COMMAND_CROP, out cropArgs))
+                {
+                    // Croping image...
+                    Log.Info("Croping...");
+                    Log.Info("Value: " + cropArgs);
+
+                    image.SaveAs(Utility.GenerateRandomFileName());
+
+                    //string saveTo = string.Empty;
+                    //if (setDestinationPath)
+                    //    destinationPath = Utility.CleanPath(destinationPath);
+                    //else
+                    //    destinationPath = Utility.CleanPath(image.CurrentDirectory) + @"\" + Utility.GenerateRandomFileName();
+                    
+                    //image.Crop(10, 30, 40, 50, destinationPath);
+
+
                 }
 
                 // Free used resources

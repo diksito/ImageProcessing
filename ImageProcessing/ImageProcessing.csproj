@@ -62,6 +62,7 @@
     <Compile Include="Infrastructure\ArgumentsParser.cs" />
     <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Infrastructure\Log.cs" />
+    <Compile Include="Infrastructure\Utility.cs" />
     <Compile Include="Model\File.cs" />
     <Compile Include="Model\Image.cs" />
     <Compile Include="Program.cs" />
