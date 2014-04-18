@@ -14,6 +14,7 @@ namespace ImageProcessing.Infrastructure
         // Commands
         public const string COMMAND_RESIZE = "-resize";
         public const string COMMAND_CROP = "-crop";
+        public const string COMMAND_ROTATE = "-rotate";
         public const string COMMAND_HEIGHT = "-height";
         public const string COMMAND_WIDTH = "-width";
         public const string COMMAND_FILE = "-file";
