@@ -9,9 +9,18 @@ Usage
 
 Open cmd.exe then go to the folder where ImageProcessing.exe is located.
 
+
+Sample Usage
+------------
+ImageProcessing.exe -file "D:\Photos\test.jpg" -resize 200x50 -destination "D:\Photos\output.jpg"
+
 Commands
 --------
 
->ImageProcessing.exe -resize "100x200"
+>-file "D:\Folder\Image.jpg"
 
->ImageProcessing.exe -crop "10x20x100x200"
+>-resize "100x200"
+
+>-rotate 270
+
+>-destination "D:\Folder\Image_Test.jpg"
