@@ -62,6 +62,9 @@ namespace ImageProcessing
                 case Constants.COMMAND_RESIZE:
                     isValid = true;
                     break;
+                case Constants.COMMAND_ROTATE:
+                    isValid = true;
+                    break;
                 case Constants.COMMAND_CROP:
                     isValid = true;
                     break;
