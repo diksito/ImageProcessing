@@ -24,11 +24,11 @@ namespace ImageProcessing
         /// </summary>
         public Image() { }
 
-        public Image(string currentDirectory)
+        public Image(string filePath)
         {
             try
             {
-                CurrentDirectory = currentDirectory;
+                CurrentDirectory = Path.GetDirectoryName(filePath);
 
                 Name = Path.GetFileNameWithoutExtension(CurrentDirectory);
                 string extension = Path.GetExtension(CurrentDirectory);
@@ -38,7 +38,7 @@ namespace ImageProcessing
                 else
                     Extension = ".jpg"; // set default to jpg
 
-                image = System.Drawing.Image.FromFile(CurrentDirectory);
+                image = System.Drawing.Image.FromFile(filePath);
 
                 // Get image height and width
                 Height = image.Height;
@@ -63,18 +63,18 @@ namespace ImageProcessing
         /// </summary>
         /// <param name="height"></param>
         /// <param name="width"></param>
-        public Bitmap Resize(int height, int width)
+        public void Resize(int width, int height)
         {
             int newHeight = (int)Math.Round(image.Height * (decimal)height / image.Width, 0);
-            var destination = new Bitmap(width, newHeight);
-            using (Graphics g = Graphics.FromImage(destination))
+            var resizedImage = new Bitmap(width, newHeight);
+            using (Graphics g = Graphics.FromImage(resizedImage))
             {
                 g.SmoothingMode = SmoothingMode.AntiAlias;
                 g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 g.PixelOffsetMode = PixelOffsetMode.HighQuality;
                 g.DrawImage(image, 0, 0, width, newHeight);
             }
-            return destination;
+            this.image = resizedImage;
         }
 
         /// <summary>
@@ -88,10 +88,8 @@ namespace ImageProcessing
 
         public void Save()
         {
-            // Overrrite exsiting file
-            image.Save(Name, ImageFormat.Jpeg);
+            image.Save(CurrentDirectory + "/" + Utility.GenerateRandomFileName() + ".jpg", ImageFormat.Jpeg);
         }
-
 
         public void SaveAs(string name)
         {
