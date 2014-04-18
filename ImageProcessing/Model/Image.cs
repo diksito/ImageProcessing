@@ -95,11 +95,27 @@ namespace ImageProcessing
 
         public void SaveAs(string name)
         {
-            image.Save(@"C:\\" + name + ".png");
+            image.Save(name);
         }
 
         public void Rotate(int degrees)
         {
+            Bitmap bitMap = (Bitmap)this.image;
+            switch(degrees)
+            {
+                case 90:
+                    bitMap.RotateFlip(RotateFlipType.Rotate90FlipXY);
+                    break;
+                case 180:
+                    bitMap.RotateFlip(RotateFlipType.Rotate180FlipXY);
+                    break;
+                case 270:
+                    bitMap.RotateFlip(RotateFlipType.Rotate270FlipXY);
+                    break;
+                default:
+                    break;
+            }
+            this.image = bitMap;
         }
 
         /// <summary>
