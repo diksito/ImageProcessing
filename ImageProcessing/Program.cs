@@ -22,7 +22,7 @@ namespace ImageProcessing
             {
                 if (!ArgumentsParser.Commands.Keys.Contains(Constants.COMMAND_FILE))
                 {
-                    Log.Error("Please define file path.");
+                    Log.Error("Please define file input path.");
                     System.Environment.Exit(0);
                 }
                 // Get file and pass it to Image
