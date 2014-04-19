@@ -94,12 +94,35 @@ namespace ImageProcessing
 
         public void Save()
         {
-            image.Save(CurrentDirectory + "/" + Utility.GenerateRandomFileName() + ".jpg", ImageFormat.Jpeg);
+            try
+            {
+                image.Save(CurrentDirectory + "/" + Utility.GenerateRandomFileName() + ".jpg", ImageFormat.Jpeg);
+            }
+            catch(Exception exc)
+            {
+                Log.Error("Cannot save the file: " + exc.Message);
+            }
         }
 
-        public void SaveAs(string name)
+        /// <summary>
+        /// Save the image file to explicit location
+        /// </summary>
+        /// <param name="filePath">Path on the hard drive where the image will be saved</param>
+        public void SaveAs(string filePath)
         {
-            image.Save(name);
+            if (Directory.Exists(Path.GetDirectoryName(filePath)))
+            {
+                try
+                {
+                    image.Save(filePath);
+                }
+                catch (Exception exc)
+                {
+                    Log.Error("Cannot save the file: " + exc.Message);
+                }
+            }
+            else
+                Log.Error("Cannot find the location path for saving!");
         }
 
         public void Rotate(int degrees)
