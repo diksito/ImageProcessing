@@ -28,6 +28,12 @@ namespace ImageProcessing
         {
             try
             {
+                if(!System.IO.File.Exists(filePath))
+                {
+                    Log.Error("File does not exist.");
+                    Log.Info("Terminating the program...");
+                    System.Environment.Exit(0);
+                }
                 CurrentDirectory = Path.GetDirectoryName(filePath);
 
                 Name = Path.GetFileNameWithoutExtension(CurrentDirectory);
