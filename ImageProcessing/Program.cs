@@ -54,8 +54,12 @@ namespace ImageProcessing
                 if (ArgumentsParser.Commands.TryGetValue(Constants.COMMAND_CROP, out parameter))
                 {
                     // Croping image...
-                    Log.Info("Croping...");
-                    Log.Info("Value: " + parameter);
+                    List<int> parameterValues = ArgumentsParser.ParseIntValues(parameter);
+                    if (parameterValues != null && parameterValues.Count == 4)
+                    {
+                        Log.Info("Croping...");
+                        image.Crop(parameter[0], parameter[1], parameter[2], parameter[3]);
+                    }
                 }
 
 
