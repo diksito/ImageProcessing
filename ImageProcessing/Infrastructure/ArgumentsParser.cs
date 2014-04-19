@@ -32,13 +32,9 @@ namespace ImageProcessing
                     if (isValidValue(arguments[i + 1]))
                     {
                         Commands.Add(arguments[i], arguments[i + 1]); // store commands in dictionary
-                        //Commands[arguments[i]] = arguments[i + 1];
-                        
                         i++;
                     }
                 }
-
-                Console.WriteLine("Input args " + arguments[i]);
             }
             return true;
         }
