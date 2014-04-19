@@ -124,22 +124,19 @@ namespace ImageProcessing
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="destination">destination path where the file will be saved</param>
-        public void Crop(int x, int y, int width, int height, string destination)
+        public void Crop(int x, int y, int width, int height)
         {
-            //Rectangle cropArea = new Rectangle(x, y, width, height);
-            //Bitmap bmpCrop = image.Clone(cropArea, image.PixelFormat);
-            //try
-            //{
-            //    bmpCrop.Save(@destination);
-            //}
-            //catch(ArgumentException exc)
-            //{
-            //    Log.Error(exc.Message);
-            //}
-            //catch(Exception exc)
-            //{
-            //    Log.Error(exc.Message);
-            //}
+            Rectangle cropArea = new Rectangle(x, y, width, height);
+            Bitmap bmpImage = new Bitmap(this.image);
+            try
+            {
+                Bitmap bmpCrop = bmpImage.Clone(cropArea, bmpImage.PixelFormat);
+                this.image = bmpCrop;
+            }
+            catch(Exception exc)
+            {
+                Log.Error("Cropping image failed: " + exc.Message);
+            }
         }
 
         private bool isValidImageExtension(string ext)
