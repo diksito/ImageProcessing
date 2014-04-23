@@ -46,6 +46,7 @@ namespace ImageProcessing
 
         private static bool isValidParameter(string parameter)
         {
+            parameter = parameter.ToLower();
             bool isValid = false;
             switch (parameter)
 	        {
