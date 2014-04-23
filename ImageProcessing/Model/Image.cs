@@ -83,15 +83,6 @@ namespace ImageProcessing
             this.image = resizedImage;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="extension"></param>
-        public void ExportAs(string name, string extension)
-        {
-        }
-
         public void Save()
         {
             try
